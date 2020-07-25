@@ -11,11 +11,6 @@ class Pet extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'descricao', 'age', 'user_id',
-    ];
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }    
+    public $timestamps = false;
+    protected $fillable = ['name', 'description', 'age', 'users_id'];
 }

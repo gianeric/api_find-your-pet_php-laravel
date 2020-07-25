@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Console\Migrations\StatusCommand;
-
+use Correios;
 
 class UserController extends Controller
 {
@@ -43,11 +43,19 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            $user = new User();
-            $user->fill($request->all());
-            $user->save();
+            $address = \Correios::cep($request->cep);
 
-            return response()->json($user, 201);
+            if (empty($address)) {
+                return response()->Json([
+                    'title' => 'Aviso',
+                    'msg' => 'Cep não encontrado.'
+                ], 404);
+            } else {
+                $user = new User();
+                $user->fill($request->all());        
+                $user->save();
+                return response()->json($user, 201);
+            }
         } catch (Exception $e) {
             return response()->json([
                 'title' => 'Erro',
@@ -85,11 +93,20 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         try {
-            $users = $this->model->find($id);
-            $users->fill($request->all());
-            $users->save();
+            $address = \Correios::cep($request->cep);
 
-            return response()->json($users, 200);
+            if (empty($address)) {
+                return response()->Json([
+                    'title' => 'Aviso',
+                    'msg' => 'Cep não encontrado.'
+                ], 404);
+            } else {
+                $user = $this->model->find($id);
+                $user->fill($request->all());
+
+                $user->save();
+                return response()->json($user, 200);
+            }
         } catch (Exception $e) {
             return response()->json([
                 'title' => 'Erro',
@@ -106,13 +123,23 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $users = $this->model->findOrFail($id);
-            $users->delete();
 
-            return response()->json(null, 204);                   
+        try {
+            $users = $this->model->find($id);
+
+            if ($users === null) {
+                return response()->Json([
+                    'title' => 'Aviso',
+                    'msg' => 'Usuário não encontrado.'
+                ], 404);
+            } else {
+                $users->delete();
+                return response()->Json([
+                    'title' => 'Mensagem',
+                    'msg' => 'Usuário deletado com sucesso.'
+                ], 404);
+            }
         } catch (Exception $e) {
-            dd($e);
             return response()->json([
                 'title' => 'Erro',
                 'msg' => 'Erro interno do servidor'

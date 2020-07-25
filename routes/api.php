@@ -19,3 +19,5 @@ Route::post('/users', 'API\UserController@store');
 Route::get('/users/{id}', 'API\UserController@show');
 Route::put('/users/{id}', 'API\UserController@update');
 Route::delete('/users/{id}', 'API\UserController@destroy');
+
+Route::apiResource('pets', 'API\PetController');

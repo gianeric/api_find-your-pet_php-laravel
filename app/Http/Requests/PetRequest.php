@@ -13,7 +13,7 @@ class PetRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,24 @@ class PetRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'         => 'required|string',
+            'description'  => 'required|string',
+            'age'          => 'required|integer',
+            'users_id'     => 'required|integer'
         ];
     }
+
+    /**
+     * Set the erro messages for the defied validation rules
+     * @return array
+     */
+    public function messages()
+    {
+        return[
+            'name.required'        => 'O campo name é obrigatório.',
+            'description.required' => 'O campo description é obrigatório.',
+            'age.required'         => 'O campo age é obrigatório.',
+            'users_id.required'    => 'O campo users_id é obrigatório.'
+        ];
+    }    
 }

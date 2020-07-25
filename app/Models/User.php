@@ -17,7 +17,8 @@ class User extends Authenticatable
     public $timestamps = false;
     protected $fillable = ['name', 'cep', 'number'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
-    }    
+    }
 }

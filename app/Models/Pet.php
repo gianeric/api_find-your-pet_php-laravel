@@ -13,4 +13,9 @@ class Pet extends Model
      */
     public $timestamps = false;
     protected $fillable = ['name', 'description', 'age', 'users_id'];
+
+    public function pet() 
+    {
+        return $this->belongsTo(Pet::class);
+    }
 }

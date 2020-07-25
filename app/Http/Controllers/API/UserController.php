@@ -9,6 +9,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Database\Console\Migrations\StatusCommand;
 use Correios;
+use App\Http\Resources\UserCollection;
 
 class UserController extends Controller
 {
@@ -31,7 +32,8 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->model->all();
-        return response()->json($users, 200);
+        $usersCollection = new UserCollection($users);
+        return response()->json($usersCollection, 200);
     }
 
     /**

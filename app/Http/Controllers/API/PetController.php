@@ -7,7 +7,7 @@ use App\Http\Requests\PetRequest;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use Exception;
-
+use App\Http\Resources\PetCollection;
 
 class PetController extends Controller
 {
@@ -29,7 +29,8 @@ class PetController extends Controller
     public function index()
     {
         $pets = $this->model->all();
-        return response()->json($pets, 200);
+        $petsCollection = new PetCollection($pets);
+        return response()->json($petsCollection, 200);
     }
 
     /**

@@ -83,12 +83,6 @@
                 <div class="title m-b-md">
                     Find Your Pet
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laravel.com/docs">Pets</a>
-                    <a href="https://laravel.com/docs">Users</a>
-                </div>
             </div>
         </div>
     </body>

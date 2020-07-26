@@ -1,19 +1,4 @@
-<h1 align ="center" 
-style ="
-    color: #636b6f;
-    font-family: 'Nunito', sans-serif;
-    font-size: 70px;
-    font-height: 100vh;
-    font-weight: 200;
-">Find Your Pet</h1>
-
-
-<!--<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>-->
+<p align="center"><img src="https://imgur.com/GcWKuIt.jpg" width="400"></p>
 
 ## About Find Your Pet
 

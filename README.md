@@ -1,13 +1,11 @@
-
-
-<p align ="center" 
+<h1 align ="center" 
 style ="
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-size: 70px;
     font-height: 100vh;
     font-weight: 200;
-">Find Your Pet</p>
+">Find Your Pet</h1>
 
 
 <!--<p align="center">

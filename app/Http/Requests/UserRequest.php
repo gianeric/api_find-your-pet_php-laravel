@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'name'         => 'required|string',
             'cep'          => 'required|string',
             'number'       => 'required|string',
-              ];
+        ];
     }
 
     /**
@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
      */
     public function messages()
     {
-        return[
+        return [
             'name.required'   => 'O campo name é obrigatório.',
             'cep.required'    => 'O campo cep é obrigatório.',
             'number.required' => 'O campo number é obrigatório.'

@@ -27,7 +27,7 @@ class PetRequest extends FormRequest
             'name'         => 'required|string',
             'description'  => 'required|string',
             'age'          => 'required|integer',
-            'users_id'     => 'required|integer'
+            'users_id'     => 'required|numeric|exists:users,id',
         ];
     }
 
@@ -41,7 +41,7 @@ class PetRequest extends FormRequest
             'name.required'        => 'O campo name é obrigatório.',
             'description.required' => 'O campo description é obrigatório.',
             'age.required'         => 'O campo age é obrigatório.',
-            'users_id.required'    => 'O campo users_id é obrigatório.'
+            'user_id.required'     => 'O campo users é obrigatório.'
         ];
     }    
 }

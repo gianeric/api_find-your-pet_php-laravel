@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PetRequest;
 use Illuminate\Http\Request;
 use App\Models\Pet;
+use App\Http\Requests\PetRequest;
 use Exception;
+use App\Http\Resources\Pet as PetResource;
 use App\Http\Resources\PetCollection;
 
 class PetController extends Controller
@@ -26,17 +27,25 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Pet $pet)
     {
-        $pets = $this->model->all();
-        $petsCollection = new PetCollection($pets);
-        return response()->json($petsCollection, 200);
+        //$pets = $this->model->all();
+        try {
+            $pets = $pet->all();
+            $petsCollection = new PetCollection($pets);
+            return response()->json($petsCollection, 200);
+        } catch (\Exception $erro) {
+            return response()->json([
+                'title' => 'Erro',
+                'msg' => 'Erro interno no servidor'
+            ], 500);
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PetRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PetRequest $request)
@@ -45,8 +54,9 @@ class PetController extends Controller
             $pets = new Pet();
             $pets->fill($request->all());
             $pets->save();
-                      
-            return response()->json($pets, 201);
+            $petResource = new PetResource($pets);
+
+            return response()->json($petResource, 201);
         } catch (Exception $e) {
             return response()->json([
                 'title' => 'Erro',
@@ -65,7 +75,8 @@ class PetController extends Controller
     {
         try {
             $pets = $this->model->findOrFail($id);
-            return response()->json($pets);
+            $petResource = new PetResource($pets);
+            return response()->json($petResource);
         } catch (Exception $e) {
             return response()->json([
                 'title' => 'Erro',
@@ -77,7 +88,7 @@ class PetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PetRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

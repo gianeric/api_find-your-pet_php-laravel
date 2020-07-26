@@ -7,12 +7,17 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class PetCollection extends ResourceCollection
 {
     /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
+    public $collects = "App\Http\Resources\Pet";
+    /**
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public $collects = "App\Http\Resources\Pet";
     public function toArray($request)
     {
         return parent::toArray($request);
